@@ -1,0 +1,1016 @@
+ <?php
+// Database query to set progress bar
+	$query  = "SELECT action1, action2, action3, action4, action5, action6, action7, action8, action9, page FROM main_table ";
+
+	$result = mysqli_query($conn, $query);
+	//Test if there was a query error
+	if(!$result) {
+		die("Database query failed.");
+	}
+	
+$level200=0;
+$level300=0;
+$level400=0;
+$level500=0;
+$level600=0;
+
+	//Populate Table
+	
+while($row = mysqli_fetch_assoc($result)) { 
+
+	if(page<300){
+		$level200 +=1;
+		if(!empty($row["action2"])) {
+			$level200 +=1;
+			if(!empty($row["action3"])) {
+				$level200 +=1;
+				if(!empty($row["action4"])) {
+					$level200 +=1;
+					if(!empty($row["action5"])) {
+						$level200 +=1;	
+						if(!empty($row["action6"])) {
+							$level200 +=1;
+							if(!empty($row["action7"])) {
+								$level200 +=1;
+								if(!empty($row["action8"])) {
+									$level200 +=1;
+									if(!empty($row["action9"])) {
+										$level200 +=1;
+									} //close 9
+								}// close 8
+							} // close 7
+						} // close 6
+					} // close 5
+				} // close 4
+			} // close 3
+		} //close 2
+
+	}elseif(page<400) {
+		$level300 +=1;
+			if(!empty($row["action2"])) {
+			$level300 +=1;
+			if(!empty($row["action3"])) {
+				$level300 +=1;
+				if(!empty($row["action4"])) {
+					$level300 +=1;
+					if(!empty($row["action5"])) {
+						$level300 +=1;	
+						if(!empty($row["action6"])) {
+							$level300 +=1;
+							if(!empty($row["action7"])) {
+								$level300 +=1;
+								if(!empty($row["action8"])) {
+									$level300 +=1;
+									if(!empty($row["action9"])) {
+										$level300 +=1;
+									} //close 9
+								}// close 8
+							} // close 7
+						} // close 6
+					} // close 5
+				} // close 4
+			} // close 3
+		} //close 2
+	
+	}elseif(page<500) {
+		$level400 +=1;
+		if(!empty($row["action2"])) {
+			$level400 +=1;
+			if(!empty($row["action3"])) {
+				$level400 +=1;
+				if(!empty($row["action4"])) {
+					$level400 +=1;
+					if(!empty($row["action5"])) {
+						$level400 +=1;	
+						if(!empty($row["action6"])) {
+							$level400 +=1;
+							if(!empty($row["action7"])) {
+								$level400 +=1;
+								if(!empty($row["action8"])) {
+									$level400 +=1;
+									if(!empty($row["action9"])) {
+										$level400 +=1;
+									} //close 9
+								}// close 8
+							} // close 7
+						} // close 6
+					} // close 5
+				} // close 4
+			} // close 3
+		} //close 2
+	
+	}elseif(page<600) {
+		$level500 +=1;
+		if(!empty($row["action2"])) {
+			$level500 +=1;
+			if(!empty($row["action3"])) {
+				$level500 +=1;
+				if(!empty($row["action4"])) {
+					$level500 +=1;
+					if(!empty($row["action5"])) {
+						$level500 +=1;	
+						if(!empty($row["action6"])) {
+							$level500 +=1;
+							if(!empty($row["action7"])) {
+								$level500 +=1;
+								if(!empty($row["action8"])) {
+									$level500 +=1;
+									if(!empty($row["action9"])) {
+										$level500 +=1;
+									} //close 9
+								}// close 8
+							} // close 7
+						} // close 6
+					} // close 5
+				} // close 4
+			} // close 3
+		} //close 2
+	
+	}else {
+		$level600 +=1;
+		if(!empty($row["action2"])) {
+			$level600 +=1;
+			if(!empty($row["action3"])) {
+				$level600 +=1;
+				if(!empty($row["action4"])) {
+					$level600 +=1;
+					if(!empty($row["action5"])) {
+						$level600 +=1;	
+						if(!empty($row["action6"])) {
+							$level600 +=1;
+							if(!empty($row["action7"])) {
+								$level600 +=1;
+								if(!empty($row["action8"])) {
+									$level600 +=1;
+									if(!empty($row["action9"])) {
+										$level600 +=1;
+									} //close 9
+								}// close 8
+							} // close 7
+						} // close 6
+					} // close 5
+				} // close 4
+			} // close 3
+		} //close 2
+	
+	} // close else
+	} // close while
+	
+	$query1  = "UPDATE progress_table SET ";
+	$query1 .= "level200= {$level200}, ";
+	$query1 .= "level300= {$level300}, ";
+	$query1 .= "level400= {$level400}, ";
+	$query1 .= "level500= {$level500}, ";
+	$query1 .= "level600= {$level600}, ";
+	$query1 .= "currentLevel200= 0, ";
+	$query1 .= "cuttentLevel300= 0, ";
+	$query1 .= "currentLevel400= 0, ";
+	$query1 .= "currentLevel500= 0, ";
+	$query1 .= "currentLevel600= 0, ";
+	$query1 .= "WHERE id = 1 ";
+	$query1 .= "LIMIT 1";
+	
+	$update = mysqli_query($conn, $query1);
+	
+	if($update && mysqli_affected_rows($conn) ==1) {
+			//Success
+			header("Location: l2.php?id=" . $level. "&subid=" . $page); 
+			
+		} else {
+			//Failure
+			// $message = "Subject pdate failed";
+			header("Location: l2.php?id=" . $level. "&subid=edit"); 
+
+		}
+	
+?>
+
+<script type="text/javascript">
+	$("document").ready(function(){
+		document.getElementById("addComplete").addEventListener("click", function(evt) {
+			updateComplete()
+		}
+		document.getElementById("addIncomplete").addEventListener("click", function(evt) {
+			updateIncomplete()
+		}
+		
+		$("#addComplete").on("click", function(){
+			var level =300;
+			updateComplete(level)
+			updateLevel(level)
+
+		}
+		$("#addIncomplete").on("click", function(){
+			var level =300;
+			updateIncomplete(level)
+			updateLevel(level)
+		}
+	});
+		function updateLevel(level, x){
+						
+			if(level==200){
+				var posting = $.post("includes/script.php", {
+					currentLevel200: x;
+				
+				});
+				} else if(level==300) {
+				var posting = $.post("includes/script.php", {
+					currentLevel300: x;
+				
+				});
+			} else if (level==400){
+				var posting = $.post("includes/script.php", {
+					currentLevel400: x;
+				
+				});
+			} else if (level==500){
+				var posting = $.post("includes/script.php", {
+					currentLevel500: x;
+				
+				});
+			} else {
+				var posting = $.post("includes/script.php", {
+					currentLevel600: x;
+
+				});
+			}
+			posting.done(function(data){
+				console.log("Update successful")
+			});
+			posting.fail(function(){
+				console.log("Update failed")
+			});
+				
+		}
+</script>
+
+<?php 
+	function getLevel(){
+
+		$queryLevel  = "SELECT currentLevel200, currentLevel300, currentLevel400, currentLevel500, currentLevel600 FROM progress_table ";
+
+		$result = mysqli_query($conn, $queryLevel);
+		//Test if there was a query error
+		if(!$result) {
+			die("Database query failed.");
+		}
+		return($result);
+	}
+ ?>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		console.log("in document");
+		$("#addComplete").on("click", function(){
+			var level =300;
+			updateComplete(level);
+			console.log("in click");
+		});
+		$("#addIncomplete").on("click", function(){
+			var level =300;
+			updateIncomplete(level);
+			console.log("in click");
+		});
+		
+	});
+		
+</script>
+
+if ($checked ==1){
+			$queryLevel  = "SELECT * FROM progress_table ";
+			$queryLevel .= "WHERE id = 1";
+			$resultLevel = mysqli_query($conn, $queryLevel);
+			if(!$resultLevel) {
+			//Success
+			//header("Location: l2.php?id=200&subid=201");
+			header("Location: index.php");  
+			
+		} else {
+			//Failure
+			// $message = "Subject pdate failed";
+			header("Location: l2.php?id=400&subid=402"); 
+
+		}
+
+		while($row = mysqli_fetch_assoc($resultLevel)) {
+			if($level==200){
+				$x= $row[currentLevel200] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel200= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if($level==300) {
+				$x= $row[currentLevel300] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel300= 10, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==400){
+				$x= $row[currentLevel400] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel400= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==500){
+				$x= $row[currentLevel500] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel500= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else {
+				$x= $row[currentLevel600] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel600= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			}
+			$resultProgress = mysqli_query($conn, $queryProgress);
+		}// close while 
+		
+			/*	
+	function updateComplete() {
+		global $level;
+		$queryLevel  = "SELECT currentLevel200, currentLevel300, currentLevel400, currentLevel500, currentLevel600 FROM progress_table ";
+
+		$resultLevel = mysqli_query($conn, $queryLevel);
+		while($row = mysqli_fetch_assoc($resultLevel)) {
+			if($level==200){
+				$x= $row[currentLevel200] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel200= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if($level==300) {
+				$x= $row[currentLevel300] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel300= 10, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==400){
+				$x= $row[currentLevel400] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel400= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==500){
+				$x= $row[currentLevel500] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel500= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else {
+				$x= $row[currentLevel600] +1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel600= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			}
+			$resultProgress = mysqli_query($conn, $queryProgress);
+		}// close while
+	}
+	switch ($actionNumber) {
+		case 1:
+			// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action1_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+			break;
+		case 2:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action2_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+			break;
+		case 3:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action3_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+			break;
+		case 4:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action4_checked= {$checked} ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case 5:
+			// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action5_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";	
+			break;
+		case 6:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action6_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case 7:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action7_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case 8:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action8_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case 9:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action9_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		default:
+			header("Location: index.php"); 
+		}
+		
+		if($actionNumber==1) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action1_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==2) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action2_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==3) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action3_checked= $checked ";
+			$query .= "WHERE id = $row ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==4) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action4_checked= {$checked} ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==5) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action5_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==6) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action6_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==7) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action7_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+		}elseif($actionNumber==8) {
+			$query  = "UPDATE main_table SET ";
+			$query .= "action8_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+		}else{
+			$query  = "UPDATE main_table SET ";
+			$query .= "action9_checked= $checked ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			
+		
+	
+		function updateIncomplete($level) {
+			getLevel();
+			global $results;
+			$row = mysqli_fetch_assoc($result);
+			
+			if($level==200){
+				$x= $row[currentLevel200] -1;
+			} else if($level==300) {
+				$x= $row[currentLevel300] -1;
+			} else if ($level==400){
+				$x= $row[currentLevel400] -1;
+			} else if ($level==500){
+				$x= $row[currentLevel500] -1;
+			} else {
+				$x= $row[currentLevel600] -1;
+			}
+			return($x);
+	}
+	
+	function updateIncomplete() {
+		global $level;
+		$queryLevel  = "SELECT currentLevel200, currentLevel300, currentLevel400, currentLevel500, currentLevel600 FROM progress_table ";
+
+		$resultLevel = mysqli_query($conn, $queryLevel);
+		while($row = mysqli_fetch_assoc($resultLevel)) {
+					
+			if($level==200){
+				$x= $row[currentLevel200] -1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel200= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if($level==300) {
+				$x= $row[currentLevel300] -1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel300= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==400){
+				$x= $row[currentLevel400] -1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel400= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else if ($level==500){
+				$x= $row[currentLevel500] -1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel500= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			} else {
+				$x= $row[currentLevel600] -1;
+					$queryProgress  = "UPDATE progress_table SET ";
+					$queryProgress .= "currentLevel600= $x, ";
+					$queryProgress .= "WHERE id = 1 ";
+					$queryProgress .= "LIMIT 1";
+			}
+			$resultProgress = mysqli_query($conn, $queryProgress);
+		}// close while
+	}*/
+
+<div class="checkbox-custom checkbox-success mb5" data-toggle="modal" data-target="#myModal">
+  <input type="checkbox"  value="" id="some_system_id2">
+  	  	  <input type="checkbox" name="<?php echo $row['SOME NUMBER'];?>" <?php if($access_id==1) echo 'checked="checked"'; ?>value="1" id="1">
+  <label for="some_system_id2"><?php	echo $row["action1"]; ?></label>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+ function OnChangeCheckbox (checkbox) {
+            if ('#checkbox'.checked) {
+                 $('#myModal').modal();
+				 $("#formId").submit();
+            }
+            else {
+                $('#myModal2').modal();
+            }
+        }
+</script>
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('#showAlert').addEventListener('change', changeHandler);
+});
+
+
+function changeHandler(){
+   //Do Something...maybe another function showAlert(), for instance
+   if(showAlert.checked){
+      //do something
+   }
+   else{
+      //do something else
+   }
+}
+
+
+document.querySelector('checkbox').addEventListener('CheckboxStateChange', Handler);
+
+document.getElementById("myBtn").addEventListener("click", function(){
+    document.getElementById("demo").innerHTML = "Hello World";
+});
+
+
+<!-- Keep checked in a session -->
+
+ <form method="post"><input id='number' Type="checkbox" name="cle[]" Value="<?php $fact['NumFacture']; ?>">
+</form>
+
+Then from jQuery you can do like this
+
+   $('#number').change(function() {
+        if($(this).is(":checked")) {
+          var value = $(this).val();
+          $.ajax({
+          type: 'POST',
+          url: "<?php echo your_php_file_url ?>",
+          data: {datas: value},
+          dataType: 'html'
+        });
+        }
+    });
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Check the checkbox to display which type of form element it is.</p>
+
+<input type="checkbox" onclick="myFunction()" id="myCheck">
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myCheck").type;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</body>
+</html>
+
+global element by id set at checkbox 
+
+account_number.toString()
+
+
+<label>
+  <input name="Language[]" type="checkbox" id="aa" checked="checked" value ="1" />One    
+</label>
+<label>
+  <input name="Language[]" type="checkbox" id="bb" value ="2" />Two
+</label>
+<label>
+  <input name="Language[]" type="checkbox"  id="cc" value ="3" />Three
+</label>
+
+$count = count($_GET["Language"]); you can count the number of checkboxes checked.
+
+<!-- ToDo List -->
+
+<template name="todoItem">
+    <li>
+        <input type="checkbox" {{checked}}>
+        <input type="text" value="{{name}}" name="todoItem">
+    </li>
+</template>
+
+
+<script>
+
+'change [type=checkbox]': function(){
+    var documentId = this._id;
+    var isCompleted = this.completed;
+    if(isCompleted){
+        Todos.update({ _id: documentId }, {$set: { completed: false }});
+        console.log("Task marked as incomplete.");
+    } else {
+        Todos.update({ _id: documentId }, {$set: { completed: true }});
+        console.log("Task marked as complete.");
+    }
+}
+
+Template.todoItem.helpers({
+    'checked': function(){
+        var isCompleted = this.completed;
+        if(isCompleted){
+            return "checked";
+        } else {
+            return "";
+        }
+    }
+});
+
+Template.todosCount.helpers({
+    'totalTodos': function(){
+		return Todos.find().count();
+	 },
+    'completedTodos': function(){
+		return Todos.find({ completed: true }).count();
+    }
+});
+
+
+</script>
+
+$('.myCheckbox').removeAttr('checked');
+
+Note:if the box was initially checked, change the behaviour of a call to .reset() on any form that contains it.
+
+<input type="checkbox" name="option1" value="Milk">
+<input type="checkbox" name="option2" value="Sugar">
+<input type="checkbox" name="option3" value="Chocolate">
+
+JS:
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("input[type='checkbox']").on('click', function(){
+	   var checked = $(this).attr('checked');
+	   if(checked){
+		  var value = $(this).val();
+		  $.post('file.php', { value:value }, function(data){
+			  // data = 0 - means that there was an error
+			  // data = 1 - means that everything is ok
+			  if(data == 1){
+				 // Do something or do nothing :-)
+				 alert('Data was saved in db!');
+			  }
+		  });
+	   }
+	});
+</script>
+PHP: file.php
+
+<?php
+if ($_POST && isset($_POST['value'])) {
+
+    // db connection
+    $link = mysql_connect('localhost', 'mysql_user', 'mysql_password');
+    if (!$link) {
+       // error happened
+       print(0);
+    }
+    mysql_select_db('mydb');
+
+    // sanitize the value
+    $value = mysql_real_escape_string($_POST['value']);
+
+    // start the query
+    $sql = "INSERT INTO table (value) VALUES ('$value')";
+
+    // check if the query was executed
+    if(mysql_query($sql, $link)){
+       // everything is Ok, the data was inserted
+       print(1);    
+    } else {
+       // error happened
+       print(0);
+    }
+}
+?>
+
+<form id="taskCompletedForm" method="post" action="completed.php?task=<?php	echo $row["action1"]; ?> ">
+	<div class="checkbox-custom checkbox-success mb5"  >
+	  <input type="checkbox"  name="sales" <?php if(isset($_POST['sales'])) echo "checked='checked'"; ?> onclick="OnChangeCheckbox (this)" id="1">
+	  <label for="1">TEST</label>
+	</div>
+</form>
+
+<!-- Modal 1 Checked -->
+<div id="myModal" class="modal fade " role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h4 class="modal-title alert alert-success">Is The task Complete?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 2 UnChecked-->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title alert alert-danger">Is the task now incomplete?</h4>
+      </div>
+      <div class="modal-body ">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+ function OnChangeCheckbox (checkbox) {
+            if (checkbox.checked) {
+                 $('#myModal').modal();
+				 $("#formId").submit();
+            }
+            else {
+                $('#myModal2').modal();
+				$("#formId").submit();
+            }
+        }
+</script>
+
+<!-- sample form submit-->
+<form id="checkboxForm<?php	echo $x=$x+1; ?> " method="post" action="completed.php?task=<?php echo $row["action1"]; ?>&row=<?php	echo $row["id"]; ?>">
+
+<input type="image" src="assets/images/checkbox.png" name="saveForm" class="btTxt submit" id="saveForm" />
+
+				  <input type="checkbox" name="submit" value="1" id="<?php	echo $x=$x+1; ?> " onclick="OnChangeCheckbox(this)" >
+
+
+
+$row= (int) $_GET["row"];
+	$checked= (int) $_GET["checked"]; //whether completed or incomplete
+	$action=  $_GET["task"]; //name of task ie action1 name, action2 name
+	$actionNumber= (int) $_GET["actionNumber"]; //correspondes with action1, action2, etc
+	
+	$alertNumber= 0; //(int) ($_GET["alert_id"]);
+	$date= date("l jS \of F Y h:i:s A");
+
+ 	
+	if ($checked ==0){
+		//task is marked complete
+		$checked=1;
+			$queryActionComplete  = "INSERT INTO completed_tasks ("; 
+			$queryActionComplete .= "  alert_id, task_name, user, completed_at, complete_incomplete";
+			$queryActionComplete .= ") VALUES (";
+			$queryActionComplete .= "  {0}, '{$action}', {'Steve'}, '{$date}', {$checked} ";
+			$queryActionComplete .= ")";
+
+	} else{
+		//Task is marked incomplete
+		$checked=0;
+			$queryIncomplete  = "INSERT INTO completed_tasks ("; 
+			$queryIncomplete .= "  alert_id, task_name, user, completed_at , complete_incomplete";
+			$queryIncomplete .= ") VALUES (";
+			$queryIncomplete .= "  {$alertNumber}, '{$action}', {'Steve'}, '{$date}', {$checked}";
+			$queryIncomplete .= ")";
+	}
+
+	switch ($actionNumber) {
+		case 1:
+			// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action1_checked= {$checked} ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case 2:
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action2_checked= {$checked} ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "3":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action3_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "4":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action4_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "5":
+			// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action5_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";	
+			break;
+		case "6":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action6_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "7":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action7_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "8":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action8_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		case "9":
+				// Process the form
+			$query  = "UPDATE main_table SET ";
+			$query .= "action9_checked= '{$checked}' ";
+			$query .= "WHERE id = {$row} ";
+			$query .= "LIMIT 1";
+			break;
+		default:
+			header("Location: index.php"); 
+	}
+	
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header alert-success">
+        <h3 class="modal-title ">Task is complete</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header alert-danger">
+        <h3 class="modal-title ">Task is incomplete</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("input").click(function(){
+        alert("The paragraph was clicked.");
+		$('form').submit(function(){
+			 $.post('completed.php?task=<?php echo $row["action1"]; ?>&row=<?php echo $row["id"];?>&checked=<?php echo $row["action1_checked"]; ?>')
+		});
+    });
+	 //$('form').submit(function(){alert('you submitted me!')})
+	
+});
+
+	function OnChangeCheckbox(checkbox) {
+			if (checkbox.checked) {
+				 //$('#myModal').modal();
+				 //$('form').submit();
+			}
+			else {
+				//$('#myModal2').modal();
+				//$('form').submit();
+			}
+		}
+</script>
